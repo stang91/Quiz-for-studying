@@ -1,0 +1,50 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+header{
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    margin-bottom: 2rem;
+    padding: .5rem;
+    border-bottom: solid black 2px ;
+}
+
+header h1{
+    font-size: 1rem;
+}
+
+header a{
+    display: flex;
+    text-decoration: none;
+    align-items: center;
+}
+
+main section{
+    display:flex;
+    justify-content: center;
+    margin: 2rem;
+    padding: 2rem;
+}
+main fieldset div{
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    justify-content: center;
+}
+div h2{
+    font-size: 2rem;
+    font-weight: bold;
+    padding: .5rem;
+    margin: .5rem;
+}
+section ul{
+    display: flex;
+    justify-content: center;
+    padding: .5rem;
+    margin: .5rem;
+}
+section ul li{
+    list-style: none;
+}
