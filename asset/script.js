@@ -35,7 +35,7 @@ function renderCurrentQuestion(){
     containerEl.innerHTML='';
     var currentQuestion=questionArray[currentQuestionIndex];
     var header=document.createElement('h2');
-    header.innerText=currentQuestion.question[currentQuestionIndex];
+    header.textContent=currentQuestion.question;
     containerEl.appendChild(header);
     
     for(var i=0; i<currentQuestion.options.length; i++){
