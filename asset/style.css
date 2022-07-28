@@ -21,7 +21,7 @@ header a{
     align-items: center;
 }
 
-main section{
+main fieldset{
     display:flex;
     justify-content: center;
     margin: 2rem;
@@ -39,12 +39,19 @@ div h2{
     padding: .5rem;
     margin: .5rem;
 }
-section ul{
+ ul{
     display: flex;
+    flex-wrap: unwrap;
+    flex-direction: column;
     justify-content: center;
     padding: .5rem;
     margin: .5rem;
 }
-section ul li{
+ ul li{
     list-style: none;
+    border: solid black 2px;
+    background: black;
+    padding: 0.5rem 2rem;
+    margin: 0.5rem;
+    color: white;
 }

@@ -6,33 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz</title>
     <link rel="stylesheet" href="./asset/style.css">
-    <script src="./asset/script.js" defer></script>
+    <script type="text/javascript" src="asset/script.js" defer></script>
 </head>
 <body>
     <header>
         <!-- seperate page for high score? -->
         <a href="">View high scores</a>
-        <h1>Time: <span>120</span></h1>
+        <h1>Time: <span id="timer">0</span></h1>
     </header>
     <main>
-        <section>
-            <fieldset>
-                <div>
-                    <h2 class="quizQuestions">Quiz title</h2>
-                    <!-- have something done to this -->
-                    <ul>
-                        <li class="changeToMutliChoiceAndBtn">about the Quiz</li>
-                    </ul>
-                    <button>start</button>
-                </div>
-            </fieldset>
-        </section>
-        <section>
-            <div>
+        <fieldset>
+            <div  id="container">
+                <h2>Quiz title</h2>
+                <!-- have something done to this -->
+                <ul id="changeToMutliChoiceAndBtn">
+                </ul>
+                <button id="startButton">start</button>
             </div>
-    
-        </section>
+        </fieldset>
     </main>
-
 </body>
+
 </html>
