@@ -1,3 +1,4 @@
+//make some real questions, options and answers
 let questionArray=[
     {
         question: "some questions",
@@ -37,13 +38,14 @@ function randomGen(array){
 
 // for loop for questions and multi choices
 //json? using parse and stringify? might be a good choice for random
+//how to randomize questions
 function renderCurrentQuestion(){
-    containerEl.innerHTML='';
+    containerEl.textContent='';
     var currentQuestion=questionArray[currentQuestionIndex];
     var header=document.createElement('h2');
     header.textContent=currentQuestion.question;
     containerEl.appendChild(header);
-    
+    //randomize options
     for(var i=0; i<currentQuestion.options.length; i++){
         var liEL=document.createElement('li');
         liEL.textContent=currentQuestion.options[i];
@@ -61,12 +63,13 @@ startBtn.addEventListener('click',function(){
         timer--;  
         if(timer<0){
             clearInterval(timerInterval);
-            containerEl.innerHTML='';
+            containerEl.textContent='';
             var gameoverTittle=containerEl.appendChild(document.createElement('h2'));
             gameoverTittle.textContent="Gameover";
             var scoreDisplay = document.createElement("p");
-            scoreDisplay.innerText = ("Your final score is " + score + "!");
+            scoreDisplay.textContent = ("Your final score is " + score + "!");
             containerEl.appendChild(scoreDisplay);
+            //input name/initials and scores into local storage
         } 
     },1000)
 });
@@ -83,12 +86,12 @@ containerEl.addEventListener('click',function(event){
             scoreEl.textContent=score;
             //play sound
             //modify timer
-            timer=timer+4;
+            timer=timer+3;
         }
         else{
             ('wrong');
             //modify timer
-            timer=timer-3;
+            timer=timer-2;
             //decrease score
             score=score-5;
             scoreEl.textContent=score;
@@ -100,12 +103,18 @@ containerEl.addEventListener('click',function(event){
         if (questionArray.length>currentQuestionIndex){
         renderCurrentQuestion();
         }else{
-            containerEl.innerHTML='';
+            containerEl.textContent='';
             var gameoverTittle=containerEl.appendChild(document.createElement('h2'));
             gameoverTittle.textContent="Gameover";
             var scoreDisplay = document.createElement("p");
-            scoreDisplay.innerText = ("Your final score is " + score + "!");
+            scoreDisplay.textContent = ("Your final score is " + score + "!");
             containerEl.appendChild(scoreDisplay);
+            //input name/initials and scores into local storage
+
         }
     }
 });
+
+//create high score page or form and sort high score
+
+//sort with bubble sort or merge sort or log(n) or log(e)
