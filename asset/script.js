@@ -55,11 +55,11 @@ function renderCurrentQuestion(){
 }
 //gameover function
 function gameover(){
-    containerEl.textContent='';
-    var gameoverTittle=containerEl.appendChild(document.createElement('h2'));
-    gameoverTittle.textContent="Gameover";
-    var scoreDisplay = containerEl.appendChild(document.createElement("p"));
-    scoreDisplay.textContent = ("Your final score is " + score + "!");
+    containerEl.textContent='';//clear content for container
+    var gameoverTittle=containerEl.appendChild(document.createElement('h2'));//create h2 element and append in container
+    gameoverTittle.textContent="Gameover";//input gameover in h2
+    var scoreDisplay = containerEl.appendChild(document.createElement("p"));//create p element and append to container
+    scoreDisplay.textContent = ("Your final score is " + score + "!");//input score in to p element
     //input name/initials and scores into local storage
     //submit score into highscore button
 }
@@ -69,11 +69,11 @@ startBtn.addEventListener('click',function(){
     renderCurrentQuestion();
     //timer
     timerInterval = setInterval(function(){
-        timerEl.textContent=timer;
-        timer--;  
+        timerEl.textContent=timer;//change timer element to timer number
+        timer--;//countdown
         if(timer<0){
             clearInterval(timerInterval);//stop timer
-            gameover();
+            gameover();//
         } 
     },1000)
 });
@@ -106,7 +106,6 @@ containerEl.addEventListener('click',function(event){
         if (questionArray.length>currentQuestionIndex){
         renderCurrentQuestion();
         }else{
-            containerEl.textContent='';
             gameover();
         }
     }
