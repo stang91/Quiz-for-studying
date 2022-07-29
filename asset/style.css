@@ -20,7 +20,10 @@ header a{
     text-decoration: none;
     align-items: center;
 }
-
+#highscore:hover{
+    cursor: pointer;
+    
+}
 main fieldset{
     display:flex;
     justify-content: center;
