@@ -5,14 +5,14 @@ let questionArray=[
         answer: "1"
     },
     {
-        question: "some questions",
+        question: "some questions2",
         options: ["1","2","3","4"],
-        answer: "1"
+        answer: "2"
     },
     {
-        question: "some questions",
+        question: "some questions3",
         options: ["1","2","3","4"],
-        answer: "1"
+        answer: "3"
     }
 ];
 
@@ -21,13 +21,17 @@ let containerEl=document.querySelector('#container');
 let timerEl=document.querySelector('#timer');
 let ulEl=document.querySelector('#changeToMutliChoiceAndBtn');
 
-let timer=120;
+let timer=3;
 let currentQuestionIndex=0;
 
 var timerInterval;
 
 //gunna use alot of random function important
-// Math.floor(math.random()*variable);
+function randomGen(array){
+    var randomIndex=Math.floor(Math.random()*array[i]);
+    var randomArray=array[randomIndex];
+    return randomArray;
+}
 
 // for loop for questions and multi choices
 
@@ -43,27 +47,25 @@ function renderCurrentQuestion(){
         liEL.textContent=currentQuestion.options[i];
         ulEl.appendChild(liEL);
     }
-    // liEl.textContent='';
     containerEl.appendChild(ulEl);
+   
 }
 
 
 
 startBtn.addEventListener('click',function(){
     renderCurrentQuestion();
-
-    //timer fix timer
+    //timer
     timerInterval = setInterval(function(){
-        timerEl.texContent=timer;
+        timerEl.textContent=timer;
         timer--;  
-        if(timer===0){
+        if(timer===-1){
             clearInterval(timerInterval);
             containerEl.innerHTML='';
+            var gameoverTittle=containerEl.appendChild(document.createElement('h2'));
+            gameoverTittle.textContent="Gameover";
         } 
     },1000)
-
-
-
 });
 
 containerEl.addEventListener('click',function(event){
@@ -81,8 +83,11 @@ containerEl.addEventListener('click',function(event){
         }else{
             console.log('wrong');
             //modify timer
+            //decrease score
+            //
 
         }
+        ulEl.textContent='';
         currentQuestionIndex++;
         renderCurrentQuestion();
     }
