@@ -39,6 +39,11 @@ div h2{
     padding: .5rem;
     margin: .5rem;
 }
+div p{
+    display: flex;
+    justify-content: center;
+}
+
  ul{
     display: flex;
     flex-wrap: unwrap;
