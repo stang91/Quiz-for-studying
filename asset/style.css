@@ -20,7 +20,7 @@ header a{
     text-decoration: none;
     align-items: center;
 }
-#highscore:hover{
+#highscore, button, ul li:hover{
     cursor: pointer;
     
 }
@@ -68,6 +68,7 @@ div p{
     padding: 0.5rem 2rem;
     margin: 0.5rem;
     color: white;
+    width: fit-content;
 }
 form{
     padding: .5rem;
@@ -79,5 +80,9 @@ form *{
 }
 button{
     width: 4rem;
-    height: 1.5rem;
+    height: fit-content;
+}
+.startButton{
+    width:4rem;
+    height:2rem;
 }

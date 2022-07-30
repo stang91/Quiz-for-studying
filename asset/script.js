@@ -1,20 +1,32 @@
 //make some real questions, options and answers
 let questionArray=[
     {
-        question: "some questions",
-        options: ["1","2","3","4"],
-        answer: "1"
+        question: " Is JavaScript a case-sensitive language?",
+        options: ["true","false"],
+        answer: "true"
     },
     {
-        question: "some questions2",
-        options: ["1","2","3","4"],
-        answer: "2"
+        question: "Can you assign a anonymous function to a variable?",
+        options: ["true","false"],
+        answer: "true"
     },
     {
-        question: "some questions3",
-        options: ["1","2","3","4"],
-        answer: "3"
+        question: "All user-defined objects and built-in objects are descendants of an object called Object?",
+        options: ["true","false"],
+        answer: "true"
+    },
+    {
+        question: "JavaScript is written under which of the following tag?",
+        options:[
+            "<JavaScript></JavaScript>",
+            "<script></script>",
+            "<code></code>",
+            "<header></header>"
+        ],
+        answer: "<script></script>"
+
     }
+
 ];
 //DOM 
 let startBtn=document.querySelector('.startButton');
@@ -60,7 +72,6 @@ function highScoreGameoverTag(){
     let formEl=containerEl.appendChild(document.createElement("form"));
     formEl.appendChild(document.createElement("label")).textContent="Initials:";
     formEl.appendChild(document.createElement("input")).setAttribute("type","text");
-    //need to fix something here to get localstorage to work?????
     submitEl=formEl.appendChild(document.createElement("button"));
     submitEl.textContent="Submit";
     //"submit score into highscores" button
@@ -108,7 +119,6 @@ containerEl.addEventListener('click',function(event){
         var userGuess=event.target.textContent;
         //user answer is right
         if (userGuess===currentQuestion.answer){
-            ('right');//create an element to input
             //increase score
             score+=10;
             scoreEl.textContent=score;
@@ -117,7 +127,6 @@ containerEl.addEventListener('click',function(event){
         }
         //user answer is wrong
         else{
-            ('wrong');//create an element to input
             //modify timer
             timer-=2;
             //decrease score
