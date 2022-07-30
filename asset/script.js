@@ -17,10 +17,10 @@ let questionArray=[
     }
 ];
 //DOM 
-let startBtn=document.querySelector('#startButton');
+let startBtn=document.querySelector('.startButton');
 let containerEl=document.querySelector('#container');
 let timerEl=document.querySelector('#timer');
-let ulEl=document.querySelector('#changeToMutliChoiceAndBtn');
+let ulEl=document.querySelector('.mutliChoiceBtn');
 let scoreEl=document.querySelector('#score');
 let highscoreEl=document.querySelector('#highscore');
 
@@ -28,24 +28,18 @@ let timer=15;
 let currentQuestionIndex=0;
 let score=0;
 var timerInterval;
+let submitEl;
+let resetEl;
 
-//gunna use alot of random function important
-function randomGen(array){
-    var randomIndex=Math.floor(Math.random()*array);
-    var randomArray=array[randomIndex];
-    return randomArray;
-}
 
-// for loop for questions and multi choices
-//json? using parse and stringify? might be a good choice for random
-//how to randomize questions
+//question rendering 
 function renderCurrentQuestion(){
-    containerEl.textContent='';
+    containerEl.textContent='';//clear content of containerEl
     var currentQuestion=questionArray[currentQuestionIndex];
-    var header=document.createElement('h2');
-    header.textContent=currentQuestion.question;
+    var header=document.createElement('h2');//create h2 element
+    header.textContent=currentQuestion.question;//place question into h2 element
     containerEl.appendChild(header);
-    //randomize options
+    //options rendering
     for(var i=0; i<currentQuestion.options.length; i++){
         var liEL=document.createElement('li');
         liEL.textContent=currentQuestion.options[i];
@@ -53,15 +47,41 @@ function renderCurrentQuestion(){
     }
     containerEl.appendChild(ulEl);
 }
+
+function submitHighScore(){
+
+}
+
+//input name/initials and scores into local storage function?
+function highScoreGameoverTag(){
+    let formEl=containerEl.appendChild(document.createElement("form"));
+    formEl.appendChild(document.createElement("label")).textContent="Initials:";
+    formEl.appendChild(document.createElement("input")).setAttribute("type","text");
+    let btnContainerEl=containerEl.appendChild(document.createElement("div"));
+    submitEl=btnContainerEl.appendChild(document.createElement("button"));
+    submitEl.textContent="Submit";
+    //"submit score into highscores" button
+    submitEl.addEventListener('click',function (){
+        localStorage.setItem("Initials",);
+        localStorage.setItem("score",);
+    });
+}
+
 //gameover function
 function gameover(){
     containerEl.textContent='';//clear content for container
     var gameoverTittle=containerEl.appendChild(document.createElement('h2'));//create h2 element and append in container
-    gameoverTittle.textContent="Gameover";//input gameover in h2
+    gameoverTittle.textContent="GAMEOVER";//input gameover in h2
     var scoreDisplay = containerEl.appendChild(document.createElement("p"));//create p element and append to container
-    scoreDisplay.textContent = ("Your final score is " + score + "!");//input score in to p element
-    //input name/initials and scores into local storage
-    //submit score into highscore button
+    if(score===(questionArray.length*10)){
+        scoreDisplay.textContent = ("You broke my quiz, you obtain the Highest Possible Score of "+score+"!");
+        timer=0;
+        highScoreGameoverTag();
+    }else{
+        scoreDisplay.textContent = ("Your final score is " + score + "!");//input score in to p element
+        timer=0;
+        highScoreGameoverTag();
+    }
 }
 
 //start button event
@@ -73,11 +93,11 @@ startBtn.addEventListener('click',function(){
         timer--;//countdown
         if(timer<0){
             clearInterval(timerInterval);//stop timer
-            gameover();//
+            gameover();
         } 
     },1000)
 });
-
+//
 containerEl.addEventListener('click',function(event){
     if(event.target.matches('li')){
         var currentQuestion=questionArray[currentQuestionIndex];
@@ -86,25 +106,25 @@ containerEl.addEventListener('click',function(event){
         if (userGuess===currentQuestion.answer){
             ('right');//create an element to input
             //increase score
-            score=score+10;
+            score+=10;
             scoreEl.textContent=score;
             //modify timer
-            timer=timer+3;
+            timer+=3;
         }
         //user answer is wrong
         else{
             ('wrong');//create an element to input
             //modify timer
-            timer=timer-2;
+            timer-=2;
             //decrease score
-            score=score-5;
+            score-=4;
             scoreEl.textContent=score;        
         }          
         ulEl.textContent='';//clear multiChoices
         currentQuestionIndex++;//next questionn
         //renders next question if there are more question coming next
         if (questionArray.length>currentQuestionIndex){
-        renderCurrentQuestion();
+            renderCurrentQuestion();
         }else{
             gameover();
         }
@@ -112,5 +132,11 @@ containerEl.addEventListener('click',function(event){
 });
 
 //create high score page or form and sort high score
+highscoreEl.addEventListener('click',function(){
+    containerEl.textContent='';
+
+});
+
+
 
 //sort with bubble sort or merge sort or log(n) or log(e) look into sort algo
