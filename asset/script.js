@@ -29,7 +29,6 @@ let currentQuestionIndex=0;
 let score=0;
 var timerInterval;
 let submitEl;
-let resetEl;
 
 renderHighScore();
 //question rendering 
