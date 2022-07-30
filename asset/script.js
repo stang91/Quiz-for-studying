@@ -61,12 +61,11 @@ function highScoreGameoverTag(){
     formEl.appendChild(document.createElement("label")).textContent="Initials:";
     formEl.appendChild(document.createElement("input")).setAttribute("type","text");
     //need to fix something here to get localstorage to work?????
-    let initialsValue=document.querySelector("input").value;
-    let btnContainerEl=containerEl.appendChild(document.createElement("div"));
-    submitEl=btnContainerEl.appendChild(document.createElement("button"));
+    submitEl=formEl.appendChild(document.createElement("button"));
     submitEl.textContent="Submit";
     //"submit score into highscores" button
     submitEl.addEventListener('click',function (){
+        let initialsValue=document.querySelector("input").value;
         localStorage.setItem("Initials",initialsValue);
         localStorage.setItem("score",score);
         renderHighScore();
@@ -81,13 +80,12 @@ function gameover(){
     var scoreDisplay = containerEl.appendChild(document.createElement("p"));//create p element and append to container
     if(score===(questionArray.length*10)){
         scoreDisplay.textContent = ("You broke my quiz, you obtain the Highest Possible Score of "+score+"!");
-        timer=0;
-        highScoreGameoverTag();
+    
     }else{
         scoreDisplay.textContent = ("Your final score is " + score + "!");//input score in to p element
-        timer=0;
-        highScoreGameoverTag();
     }
+    timer=0;
+    highScoreGameoverTag();
 }
 
 //start button event
@@ -142,7 +140,5 @@ highscoreEl.addEventListener('click',function(){
     ;
 
 });
-
-
 
 //sort with bubble sort or merge sort or log(n) or log(e) look into sort algo
