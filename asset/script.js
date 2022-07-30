@@ -31,7 +31,7 @@ var timerInterval;
 let submitEl;
 let resetEl;
 
-
+renderHighScore();
 //question rendering 
 function renderCurrentQuestion(){
     containerEl.textContent='';//clear content of containerEl
@@ -48,8 +48,12 @@ function renderCurrentQuestion(){
     containerEl.appendChild(ulEl);
 }
 
-function submitHighScore(){
-
+function renderHighScore(){
+    let initialsValue=localStorage.getItem("Initials");
+    let scoreValue=localStorage.getItem("Score");
+    if (!initialsValue||!scoreValue){
+        return;
+    }
 }
 
 //input name/initials and scores into local storage function?
@@ -57,13 +61,16 @@ function highScoreGameoverTag(){
     let formEl=containerEl.appendChild(document.createElement("form"));
     formEl.appendChild(document.createElement("label")).textContent="Initials:";
     formEl.appendChild(document.createElement("input")).setAttribute("type","text");
+    //need to fix something here to get localstorage to work?????
+    let initialsValue=document.querySelector("input").value;
     let btnContainerEl=containerEl.appendChild(document.createElement("div"));
     submitEl=btnContainerEl.appendChild(document.createElement("button"));
     submitEl.textContent="Submit";
     //"submit score into highscores" button
     submitEl.addEventListener('click',function (){
-        localStorage.setItem("Initials",);
-        localStorage.setItem("score",);
+        localStorage.setItem("Initials",initialsValue);
+        localStorage.setItem("score",score);
+        renderHighScore();
     });
 }
 
@@ -133,7 +140,7 @@ containerEl.addEventListener('click',function(event){
 
 //create high score page or form and sort high score
 highscoreEl.addEventListener('click',function(){
-    containerEl.textContent='';
+    ;
 
 });
 
