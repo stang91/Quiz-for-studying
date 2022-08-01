@@ -84,9 +84,8 @@ function renderHighScore(){
       return;
     }
   }
-  
-//sort with bubble sort or merge sort or log(n) or log(e) look into sort algo
 
+//sort with bubble sort or merge sort or insertion sort
 
 //input name/initials and scores into local storage function?
 function highScoreGameoverTag(){
