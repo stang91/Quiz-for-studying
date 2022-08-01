@@ -11,7 +11,7 @@ let questionArray=[
         answer: "true"
     },
     {
-        question: "All user-defined objects and built-in objects are descendants of an object called Object?",
+        question: "How would you add to an array",
         options: ["true","false"],
         answer: "true"
     },
@@ -34,7 +34,7 @@ let containerEl=document.querySelector('#container');
 let timerEl=document.querySelector('#timer');
 let ulEl=document.querySelector('.mutliChoiceBtn');
 let scoreEl=document.querySelector('#score');
-let highscoreEl=document.querySelector('#highscore');
+let highscoreListEl=document.querySelector('#highscoreList');
 
 let timer=15;
 let currentQuestionIndex=0;
@@ -59,13 +59,34 @@ function renderCurrentQuestion(){
     containerEl.appendChild(ulEl);
 }
 
-function renderHighScore(){
-    let initialsValue=localStorage.getItem("Initials");
-    let scoreValue=localStorage.getItem("Score");
-    if (!initialsValue||!scoreValue){
-        return;
-    }
+function saveHighscore(){
+    let initialsValue=document.querySelector("input").value;
+    let highscoreArr={
+        initials: initialsValue.trim(),
+        scoreValue: score
+    };
+    localStorage.setItem("highscoreArr",JSON.stringify(highscoreArr));
 }
+function renderHighScore(){
+    var currentHighscore = JSON.parse(localStorage.getItem("highscoreArr"));
+    var lastHighscore=[];
+    if(currentHighscore!==null){
+        highscoreListEl.appendChild(document.createElement("li")).textContent = currentHighscore.initials+" - "+currentHighscore.scoreValue;
+        lastHighscore.push(currentHighscore);
+        localStorage.setItem("lastHighscore",JSON.stringify(lastHighscore));
+    }
+    else if (lastHighscore==null) {
+        lastHighscore=JSON.parse(localStorage.getItem("lastHighsore"));
+        for (i=0;i<lastHighscore.length;i++){
+            highscoreListEl.appendChild(document.createElement("li")).textContent = lastHighscore[i].initials+" - "+lastHighscore[i].scoreValue;
+        }
+    } else {
+      return;
+    }
+  }
+  
+//sort with bubble sort or merge sort or log(n) or log(e) look into sort algo
+
 
 //input name/initials and scores into local storage function?
 function highScoreGameoverTag(){
@@ -75,10 +96,9 @@ function highScoreGameoverTag(){
     submitEl=formEl.appendChild(document.createElement("button"));
     submitEl.textContent="Submit";
     //"submit score into highscores" button
-    submitEl.addEventListener('click',function (){
-        let initialsValue=document.querySelector("input").value;
-        localStorage.setItem("Initials",initialsValue);
-        localStorage.setItem("score",score);
+    submitEl.addEventListener('click',function (event){
+        event.preventDefault();
+        saveHighscore();
         renderHighScore();
     });
 }
@@ -143,11 +163,3 @@ containerEl.addEventListener('click',function(event){
         }
     }
 });
-
-//create high score page or form and sort high score
-highscoreEl.addEventListener('click',function(){
-    ;
-
-});
-
-//sort with bubble sort or merge sort or log(n) or log(e) look into sort algo

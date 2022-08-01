@@ -20,27 +20,31 @@ header a{
     text-decoration: none;
     align-items: center;
 }
-#highscore, button, ul li:hover{
+button, ul li:hover{
     cursor: pointer;
     
 }
+
 main fieldset{
     display:flex;
     justify-content: center;
     margin: 2rem;
     padding: 2rem;
+    flex-direction: column;
 }
-#container{
+#container, #highscoreContainer{
+    
     display: flex;
     flex-wrap: nowrap;
     flex-direction: column;
     justify-content: center;
     
 }
-#container div{
+#container div, #highscoreContainer div {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
 }
+
 div h2{
     display: flex;
     justify-content: center;
@@ -52,8 +56,15 @@ div h2{
 div p{
     display: flex;
     justify-content: center;
+    padding: .5rem;
+    margin: .5rem;
 }
-
+div form{
+    display: flex;
+    justify-content: center;
+    padding: .5rem;
+    margin: .5rem;
+}
  ul{
     display: flex;
     flex-direction: column;
@@ -61,7 +72,7 @@ div p{
     padding: .5rem;
     margin: .5rem;
 }
- ul li{
+.mutliChoiceBtn li{
     list-style: none;
     border: solid black 2px;
     background: black;
@@ -80,9 +91,5 @@ form *{
 }
 button{
     width: 4rem;
-    height: fit-content;
-}
-.startButton{
-    width:4rem;
-    height:2rem;
+    height: 2rem;
 }

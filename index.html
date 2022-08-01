@@ -6,20 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz</title>
     <link rel="stylesheet" href="./asset/style.css">
-    <script type="text/javascript" src="asset/script.js" defer></script>
+    <script type="text/javascript" src="asset/jscript.js" defer></script>
 </head>
 <body>
     <header>
-        <h1 id="highscore">View high Scores</h1>
         <h1>Score: <span id="score">0</span></h1>
         <h1>Time: <span id="timer">0</span></h1>
     </header>
     <main>
-        <fieldset id="fieldsetContainer">
-            <div  id="container">
-                <h2>Quiz title</h2>
+        <fieldset id="fieldsetQuestionContainer">
+            <div id="container">
+                <h2>JavaScript Quiz</h2>
                 <ul class="mutliChoiceBtn"></ul>
                 <div><button class="startButton">Start</button></div>
+            </div>
+        </fieldset>
+        <fieldset id="fieldsetHighContainer">
+            <div id="highscoreContainer">
+                <h2 id="highscore">High Scores</h2>
+                <ol id="highscoreList"></ol>
+                <div><button class="clearbutton">Clear</button></div>
             </div>
         </fieldset>
     </main>
