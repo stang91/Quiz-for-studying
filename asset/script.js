@@ -44,7 +44,7 @@ let containerEl=document.querySelector('#container');
 let timerEl=document.querySelector('#timer');
 let ulEl=document.querySelector('.mutliChoiceBtn');
 let scoreEl=document.querySelector('#score');
-let highscoreEl=document.querySelector('#highscore');
+let highscoreListEl=document.querySelector('#highscoreList');
 
 let timer=20;
 let currentQuestionIndex=0;
@@ -82,17 +82,10 @@ function saveHighscore(){
 
 function renderHighScore(){
     var currentHighscore = JSON.parse(localStorage.getItem("highscoreArr"));
-    var lastHighscore=[];
     if(currentHighscore!==null){
-        highscoreListEl.appendChild(document.createElement("li")).textContent = currentHighscore.initials+" - "+currentHighscore.scoreValue;
-        lastHighscore.push(currentHighscore);
-        localStorage.setItem("lastHighscore",JSON.stringify(lastHighscore));
-    }
-    else if (lastHighscore!==null) {
-        lastHighscore=JSON.parse(localStorage.getItem("lastHighsore"));
-        for (i=0;i<lastHighscore.length;i++){
-            highscoreListEl.appendChild(document.createElement("li")).textContent = lastHighscore[i].initials+" - "+lastHighscore[i].scoreValue;
-        }
+        var listedHighscoreItems=document.createElement('li');
+        listedHighscoreItems.textContent = currentHighscore.initials+" - "+currentHighscore.scoreValue;
+        highscoreListEl.appendChild(listedHighscoreItems);
     } else {
       return;
     }
@@ -105,7 +98,8 @@ function highScoreGameoverTag(){
     submitEl=formEl.appendChild(document.createElement("button"));
     submitEl.textContent="Submit";
     //"submit score into highscores" button
-    submitEl.addEventListener('click',function (){
+    submitEl.addEventListener('click',function (event){
+        event.preventDefault();
         saveHighscore();
         renderHighScore();
     });
@@ -170,10 +164,4 @@ containerEl.addEventListener('click',function(event){
             gameover();
         }
     }
-});
-
-//create high score page or form and sort high score
-highscoreEl.addEventListener('click',function(){
-
-
 });
