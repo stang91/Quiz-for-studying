@@ -1,17 +1,22 @@
 //make some real questions, options and answers
 let questionArray=[
     {
+        question: "What method do you use to add at the beginning of an array?",
+        options: ["shift ()","push ()","unshift ()","pop ()"],
+        answer: "unshift ()"
+    },
+    {
         question: " Is JavaScript a case-sensitive language?",
         options: ["true","false"],
         answer: "true"
     },
     {
-        question: "Can you assign a anonymous function to a variable?",
-        options: ["true","false"],
-        answer: "true"
+        question: "What method do you use to add at the end of an array?",
+        options: ["unshift ()","pop ()","shift ()","push ()"],
+        answer: "push ()"
     },
     {
-        question: "How would you add to an array",
+        question: "Can you assign a anonymous function to a variable?",
         options: ["true","false"],
         answer: "true"
     },
@@ -25,6 +30,11 @@ let questionArray=[
         ],
         answer: "<script></script>"
 
+    },
+    {
+        question: "What method do you use to remove at the end of an array?",
+        options: ["unshift ()","pop ()","shift ()","push ()"],
+        answer: "pop ()"
     }
 
 ];
@@ -34,15 +44,14 @@ let containerEl=document.querySelector('#container');
 let timerEl=document.querySelector('#timer');
 let ulEl=document.querySelector('.mutliChoiceBtn');
 let scoreEl=document.querySelector('#score');
-let highscoreListEl=document.querySelector('#highscoreList');
+let highscoreEl=document.querySelector('#highscore');
 
-let timer=15;
+let timer=20;
 let currentQuestionIndex=0;
 let score=0;
 var timerInterval;
 let submitEl;
 
-renderHighScore();
 //question rendering 
 function renderCurrentQuestion(){
     containerEl.textContent='';//clear content of containerEl
@@ -85,8 +94,6 @@ function renderHighScore(){
     }
   }
 
-//sort with bubble sort or merge sort or insertion sort
-
 //input name/initials and scores into local storage function?
 function highScoreGameoverTag(){
     let formEl=containerEl.appendChild(document.createElement("form"));
@@ -98,6 +105,21 @@ function highScoreGameoverTag(){
     submitEl.addEventListener('click',function (event){
         event.preventDefault();
         saveHighscore();
+        renderHighScore();
+    });
+}
+//input name/initials and scores into local storage function?
+function highScoreGameoverTag(){
+    let formEl=containerEl.appendChild(document.createElement("form"));
+    formEl.appendChild(document.createElement("label")).textContent="Initials:";
+    formEl.appendChild(document.createElement("input")).setAttribute("type","text");
+    submitEl=formEl.appendChild(document.createElement("button"));
+    submitEl.textContent="Submit";
+    //"submit score into highscores" button
+    submitEl.addEventListener('click',function (){
+        let initialsValue=document.querySelector("input").value;
+        localStorage.setItem("Initials",initialsValue);
+        localStorage.setItem("score",score);
         renderHighScore();
     });
 }
@@ -162,3 +184,11 @@ containerEl.addEventListener('click',function(event){
         }
     }
 });
+
+//create high score page or form and sort high score
+highscoreEl.addEventListener('click',function(){
+
+
+});
+
+//sort with bubble sort or merge sort or log(n) or log(e) look into sort algo
