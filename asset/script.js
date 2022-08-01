@@ -68,6 +68,7 @@ function renderCurrentQuestion(){
     containerEl.appendChild(ulEl);
 }
 
+//input name/initials and scores into local storage function?
 function saveHighscore(){
     let initialsValue=document.querySelector("input").value;
     let highscoreArr={
@@ -76,6 +77,9 @@ function saveHighscore(){
     };
     localStorage.setItem("highscoreArr",JSON.stringify(highscoreArr));
 }
+//sort highscore with bubble sort, insertion sort, or merge sort
+
+
 function renderHighScore(){
     var currentHighscore = JSON.parse(localStorage.getItem("highscoreArr"));
     var lastHighscore=[];
@@ -84,7 +88,7 @@ function renderHighScore(){
         lastHighscore.push(currentHighscore);
         localStorage.setItem("lastHighscore",JSON.stringify(lastHighscore));
     }
-    else if (lastHighscore==null) {
+    else if (lastHighscore!==null) {
         lastHighscore=JSON.parse(localStorage.getItem("lastHighsore"));
         for (i=0;i<lastHighscore.length;i++){
             highscoreListEl.appendChild(document.createElement("li")).textContent = lastHighscore[i].initials+" - "+lastHighscore[i].scoreValue;
@@ -94,21 +98,6 @@ function renderHighScore(){
     }
   }
 
-//input name/initials and scores into local storage function?
-function highScoreGameoverTag(){
-    let formEl=containerEl.appendChild(document.createElement("form"));
-    formEl.appendChild(document.createElement("label")).textContent="Initials:";
-    formEl.appendChild(document.createElement("input")).setAttribute("type","text");
-    submitEl=formEl.appendChild(document.createElement("button"));
-    submitEl.textContent="Submit";
-    //"submit score into highscores" button
-    submitEl.addEventListener('click',function (event){
-        event.preventDefault();
-        saveHighscore();
-        renderHighScore();
-    });
-}
-//input name/initials and scores into local storage function?
 function highScoreGameoverTag(){
     let formEl=containerEl.appendChild(document.createElement("form"));
     formEl.appendChild(document.createElement("label")).textContent="Initials:";
@@ -117,9 +106,7 @@ function highScoreGameoverTag(){
     submitEl.textContent="Submit";
     //"submit score into highscores" button
     submitEl.addEventListener('click',function (){
-        let initialsValue=document.querySelector("input").value;
-        localStorage.setItem("Initials",initialsValue);
-        localStorage.setItem("score",score);
+        saveHighscore();
         renderHighScore();
     });
 }
@@ -190,5 +177,3 @@ highscoreEl.addEventListener('click',function(){
 
 
 });
-
-//sort with bubble sort or merge sort or log(n) or log(e) look into sort algo
