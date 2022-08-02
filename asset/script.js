@@ -22,12 +22,7 @@ let questionArray=[
     },
     {
         question: "JavaScript is written under which of the following tag?",
-        options:[
-            "<JavaScript></JavaScript>",
-            "<script></script>",
-            "<code></code>",
-            "<header></header>"
-        ],
+        options:["<JavaScript></JavaScript>","<script></script>","<code></code>","<header></header>"],
         answer: "<script></script>"
 
     },
@@ -45,12 +40,15 @@ let timerEl=document.querySelector('#timer');
 let ulEl=document.querySelector('.mutliChoiceBtn');
 let scoreEl=document.querySelector('#score');
 let highscoreListEl=document.querySelector('#highscoreList');
+let clearBtn=document.querySelector('#clearbutton');
 
 let timer=20;
 let currentQuestionIndex=0;
 let score=0;
 var timerInterval;
 let submitEl;
+let currentHighscore = JSON.parse(localStorage.getItem('highscoreArr')) || [];
+
 
 //question rendering 
 function renderCurrentQuestion(){
@@ -68,32 +66,36 @@ function renderCurrentQuestion(){
     containerEl.appendChild(ulEl);
 }
 
-//input name/initials and scores into local storage function?
+//save name/initials and scores into local storage
 function saveHighscore(){
+    alert("about to save score")
     let initialsValue=document.querySelector("input").value;
-    let highscoreArr={
+    let highscoreObj={
         initials: initialsValue.trim(),
         scoreValue: score
     };
-    localStorage.setItem("highscoreArr",JSON.stringify(highscoreArr));
+    // add highscore list
+    currentHighscore.push(highscoreObj);
+    //store list
+    localStorage.setItem("highscoreArr",JSON.stringify(currentHighscore));
 }
-//sort highscore with bubble sort, insertion sort, or merge sort
 
-
+//renders highscore to highscore box
 function renderHighScore(){
-    var currentHighscore = JSON.parse(localStorage.getItem("highscoreArr"));
-    if(currentHighscore!==null){
+    highscoreListEl.textContent = '';
+    //create li element for each highscore inputs
+    for (let i = 0; i < currentHighscore.length; i++) {
+        currentHighscore.sort(function(a,b){return b.scoreValue-a.scoreValue});//bubble sort the currenthighscore
         var listedHighscoreItems=document.createElement('li');
-        listedHighscoreItems.textContent = currentHighscore.initials+" - "+currentHighscore.scoreValue;
+        listedHighscoreItems.textContent = currentHighscore[i].initials+" - "+currentHighscore[i].scoreValue;
         highscoreListEl.appendChild(listedHighscoreItems);
-    } else {
-      return;
     }
   }
 
+  //create form for initials/names for player and submit button
 function highScoreGameoverTag(){
     let formEl=containerEl.appendChild(document.createElement("form"));
-    formEl.appendChild(document.createElement("label")).textContent="Initials:";
+    formEl.appendChild(document.createElement("label")).textContent="Name/Initials:";
     formEl.appendChild(document.createElement("input")).setAttribute("type","text");
     submitEl=formEl.appendChild(document.createElement("button"));
     submitEl.textContent="Submit";
@@ -134,7 +136,8 @@ startBtn.addEventListener('click',function(){
         } 
     },1000)
 });
-//
+
+//Click event to multiChoice and to see if its right or wrong with increase or decrease score and timer and renders nextquestions
 containerEl.addEventListener('click',function(event){
     if(event.target.matches('li')){
         var currentQuestion=questionArray[currentQuestionIndex];
@@ -165,3 +168,9 @@ containerEl.addEventListener('click',function(event){
         }
     }
 });
+//clear button for localStorage and clear the highscore list
+clearBtn.addEventListener('click',function(){
+    highscoreListEl.textContent='';
+    localStorage.clear();
+});
+renderHighScore();
