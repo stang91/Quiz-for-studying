@@ -14,12 +14,12 @@ I have always despise studying.  The monotony of flipping through pages of text 
 
 
 ## Usage
-![alt text](https://github.com/[username]/[reponame]/blob/[branch]/image.jpg?raw=true)
-![alt text](https://github.com/[username]/[reponame]/blob/[branch]/image.jpg?raw=true)
-![alt text](https://github.com/[username]/[reponame]/blob/[branch]/image.jpg?raw=true)
-![alt text](https://github.com/[username]/[reponame]/blob/[branch]/image.jpg?raw=true)
-![alt text](https://github.com/[username]/[reponame]/blob/[branch]/image.jpg?raw=true)
-
+![alt text](https://github.com/stang91/Quiz-for-studying/blob/main/asset/images/Screen%20Shot%202022-08-01%20at%2010.41.25%20PM.png)
+![alt text](https://github.com/stang91/Quiz-for-studying/blob/main/asset/images/Screen%20Shot%202022-08-01%20at%2010.41.42%20PM.png)
+![alt text](https://github.com/stang91/Quiz-for-studying/blob/main/asset/images/Screen%20Shot%202022-08-01%20at%2010.42.17%20PM.png)
+![alt text](https://github.com/stang91/Quiz-for-studying/blob/main/asset/images/Screen%20Shot%202022-08-01%20at%2010.42.29%20PM.png)
+![alt text](https://github.com/stang91/Quiz-for-studying/blob/main/asset/images/Screen%20Shot%202022-08-01%20at%2010.43.21%20PM.png)
+![alt text](https://github.com/stang91/Quiz-for-studying/blob/main/asset/images/Screen%20Shot%202022-08-01%20at%2010.43.33%20PM.png)
 
 ## Credit
 I recieved help Meg Meyers with localStorage, however towards the end I changed into a JSON approach, and recieved help from Diarmuid Murphy with the adding to list and displaying it in highscore.
